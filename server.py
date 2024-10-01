@@ -55,7 +55,7 @@ async def url_resolve(short_url: str):
     url_entry = await get_url(short_url)
     original_url =  url_entry["long_url"]
     if url_entry:
-        return RedirectResponse("original_url")
+        return RedirectResponse(original_url)
     raise HTTPException(status_code=404, detail="URL not found")
 
 

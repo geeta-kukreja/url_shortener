@@ -11,5 +11,8 @@ async def save_url(uuid,short_code, long_url):
     db.urls.insert_one({"id": uuid,"short_code": short_code, "long_url": long_url})
 
 async def get_url(short_code):
-    url_entry = db.urls.find_one({"short_code": short_code})
-    return url_entry["long_url"] if url_entry else None
+    url_entry = await db.urls.find_one({"short_code": short_code})
+    print(f"MongoDB returned: {url_entry}") 
+    if url_entry:
+        return url_entry["long_url"]
+    return None
