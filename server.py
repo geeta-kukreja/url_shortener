@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
-from fastapi.responses import RedirectResponse
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse,RedirectResponse
+from pydantic import BaseModel, ValidationError
 from uuid import uuid4
 from database import save_url, get_url, setup_indexes, delete_url,custom_url_exists
 from utils import generate_short_url, validate_custom_short_code
@@ -10,6 +10,10 @@ from redis_client import get_redis, close_redis, set_redis, get_redis_value, del
 
 app = FastAPI()
 BASE_URL: str = "http://localhost:8000"
+
+@app.exception_handler(HTTPException)
+async def http_exception_handler(request: Request, exc: HTTPException):
+    return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
 
 @app.on_event("startup")
 async def startup_event():

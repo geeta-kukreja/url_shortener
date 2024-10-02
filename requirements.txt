@@ -8,3 +8,5 @@ uvicorn[standard]==0.23.2
 motor
 validators
 aioredis
+pytest
+httpx
