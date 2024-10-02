@@ -1,5 +1,6 @@
 Flask>=2.1.0
 pymongo
+python-dotenv
 Werkzeug>=2.1.0
 fastapi==0.103.1
 pydantic==2.3.0
