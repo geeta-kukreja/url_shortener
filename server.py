@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 from uuid import uuid4
-from database import save_url, get_url
+from database import save_url, get_url, setup_indexes
 from utils import generate_short_url
 import validators
 from redis_client import get_redis, close_redis
@@ -14,12 +14,11 @@ BASE_URL: str = "http://localhost:8000"
 @app.on_event("startup")
 async def startup_event():
     await get_redis()
+    await setup_indexes()
 
 @app.on_event("shutdown")
 async def shutdown_event():
     await close_redis()
-
-
 
 class ShortenRequest(BaseModel):
     url: str
@@ -54,13 +53,13 @@ async def url_shorten(request: ShortenRequest):
 
     return {"short_url": f"{BASE_URL}/r/{short_url}"}
 
-async def modify_and_check_url(original_short_url, attempt):
-    redis = await get_redis()
-    modified_short_url = f"{original_short_url}{attempt}"
-    existing_url = await redis.get(modified_short_url)
-    if existing_url is None:
-        return modified_short_url
-    return None
+# async def modify_and_check_url(original_short_url, attempt):
+#     redis = await get_redis()
+#     modified_short_url = f"{original_short_url}{attempt}"
+#     existing_url = await redis.get(modified_short_url)
+#     if existing_url is None:
+#         return modified_short_url
+#     return None
 
 
 class ResolveRequest(BaseModel):
