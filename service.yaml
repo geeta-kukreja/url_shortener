@@ -4,9 +4,11 @@ metadata:
   name: url-shortener-service
 spec:
   selector:
-    app: url-shortener
-  type: LoadBalancer
+    app: url-shortener-tech-test-main
+  type: NodePort
   ports:
     - protocol: TCP
-      port: 80
+      port: 8000
       targetPort: 8000
+
+

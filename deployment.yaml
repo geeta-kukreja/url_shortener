@@ -6,15 +6,15 @@ spec:
   replicas: 2  # Specifies the number of instances
   selector:
     matchLabels:
-      app: url-shortener
+      app: url-shortener-tech-test-main
   template:
     metadata:
       labels:
-        app: url-shortener
+        app: url-shortener-tech-test-main
     spec:
       containers:
-      - name: url-shortener
-        image: geetakukreja/url-shortener:latest
+      - name: url-shortener-app
+        image: geetakukreja/url_shortener:image1
         ports:
         - containerPort: 8000
         envFrom:
