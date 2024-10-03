@@ -14,7 +14,7 @@ This project is a URL shortener service designed to create concise, memorable UR
 
 ## Architecture
 This project uses a layered architecture, ensuring separation of concerns and ease of maintenance. See the detailed architectural flow in the diagram included below.
-![URL Shortener Architecture](https://raw.githubusercontent.com/tograh/testrepository/master/3DTest.png)
+![URL Shortener Architecture](https://github.com/geeta-kukreja/url_shortener/blob/7cf2432d5256dbde51dcb7fa444d741e162b437a/diagram.jpeg)
 
 ## Installation
 
