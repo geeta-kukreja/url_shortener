@@ -13,15 +13,20 @@ Be prepared to share your screen for live coding and problem solving with your i
 Using the provided Python project template, your task is to implement a URL Shortener web service that exposes
 the following API endpoints:
 
-* POST `/url/shorten`: accepts a URL to shorten (e.g. https://www.google.com) and returns a short URL that 
-  can be resolved at a later time (e.g. http://localhost:8000/r/abc)
+* POST `/url/shorten`: accepts a URL to shorten (e.g. https://www.google.com) and returns a short URL that can be resolved at a later time (e.g. http://localhost:8000/r/abc)
 * GET `r/<short_url>`: resolve the given short URL (e.g. http://localhost:8000/r/abc) to its original URL
   (e.g. https://www.google.com). If the short URL is unknown, an HTTP 404 response is returned.
+
+Additionally, I have added support to delete exisiting short URL by adding a DELETE method to the `url/<short_url>` endpoint. Also, I have added method to create a custom short URL by adding a POST method to the `url/custom-shorten` endpoint.
 
 Your solution must support running the URL shortener service with multiple workers.
 
 For example, it should be possible to start two instances of the service, make a request to shorten a URL
 to one instance, and be able to resolve that shortened URL by sending subsequent requests to the second instance. 
+
+The URL shortener service should be able to handle a large number of requests and be able to scale horizontally. To manage horizontall scaling, I have utilized kubernetes to orchestrate the deployment of the URL shortener service.
+
+With multiple instances of the URL shortener service running, I chose to use MongoDB as the backend storage to store the mapping between the short URL and the original URL. This allows the service to be stateless and horizontally scalable. To avoid making multiple requests to the database and overload it, I have implemented a cache layer using Redis to store the mapping between the short URL and the original URL which are frequently accessed and recently created.
 
 ## Getting Started
 
@@ -47,7 +52,8 @@ update the project and make sure to modify the README to reflect how your implem
 
 To run the web service in interactive mode, use the following command:
 ```commandline
-make run
+docker build -t url_shortener .
+docker run -it -p 8000:8000 url_shortener
 ```
 
 This command will build a new Docker image (`pw/url-shortener:latest`) and start a container
@@ -78,3 +84,6 @@ ask you to solve an algorithm, but you will be expected to demo your solution an
 
 Good luck, and we look forward to seeing your URL Shortener project! If you have any questions or need
 clarifications, please reach out to us.
+
+
+![Description of Image](remark-mermaid-4.svg)
