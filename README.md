@@ -86,4 +86,4 @@ Good luck, and we look forward to seeing your URL Shortener project! If you have
 clarifications, please reach out to us.
 
 
-![Description of Image](remark-mermaid-4.svg)
+![Description of Image](diagram.pdf)
