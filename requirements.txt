@@ -7,6 +7,6 @@ pydantic==2.3.0
 uvicorn[standard]==0.23.2
 motor
 validators
-aioredis
+redis[hiredis]
 pytest
 httpx

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: url-shortener-config
+data:
+  MONGO_URI: "mongodb+srv://practicegr17:GYBI6J3idUPaaCL2@urlshortener.i8u0d.mongodb.net/?retryWrites=true&w=majority&appName=URLShortener"
+  REDIS_URL: "redis://url-shortener-redis:6379"
