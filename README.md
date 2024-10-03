@@ -31,16 +31,6 @@ This project uses a layered architecture, ensuring separation of concerns and ea
 
 ## Getting Started
 
-To begin the project, clone this repository to your local machine:
-
-```commandline
-git clone https://github.com/pocketzworld/url-shortener-tech-test.git
-```
-
-This repository contains a skeleton of the URL Shortener web service written in Python
-using the [FastAPI](https://fastapi.tiangolo.com/) framework.
-
-The API endpoints can be found in `server.py`.
 
 ### Running the service
 
