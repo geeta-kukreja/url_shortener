@@ -1,4 +1,4 @@
-# URL Shortener Take-Home Project
+# URL Shortener
 This project is a URL shortener service designed to create concise, memorable URLs from lengthy or complex ones. It’s built to handle high traffic with optimal performance by leveraging a modern tech stack.
 
 
